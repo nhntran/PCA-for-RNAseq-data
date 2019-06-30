@@ -1,22 +1,21 @@
----
-title: "Quick - Easy Pipeline for Principal Component Analysis on RNASeq Data using R"
-author: "Tran Nguyen"
-date: "06/25/2019"
-output:
-  html_document:
-    keep_md: TRUE
----
+Quick - Easy Pipeline for Principal Component Analysis on RNASeq Data using R
+================
+Tran Nguyen
+06/25/2019
 
+-   [1. Get and set working directory](#get-and-set-working-directory)
+-   [2. Generate the example data](#generate-the-example-data)
+-   [3. Important tips on PCA](#important-tips-on-pca)
+-   [4. Perform PCA with prcomp()](#perform-pca-with-prcomp)
+-   [5. Plot the PCA](#plot-the-pca)
+-   [5. Plot results:](#plot-results)
 
+This is the quick and simple pipeline for PCA on RNAseq data using R. Feel free to use the codes for your analysis. If you want to learn more about PCA, check out the excellent "StatQuest with Josh Starmer" video series on Youtube. (<https://www.youtube.com/watch?v=FgakZw6K1QQ>) The materials below were generated based on the "StatQuest with Josh Starmer" tutorials, with some modifications by me.
 
-This is the quick and simple pipeline for PCA on RNAseq data using R. Feel free to use the codes for your analysis. If you want to learn more about PCA, check out the excellent "StatQuest with Josh Starmer" video series on Youtube. 
-(https://www.youtube.com/watch?v=FgakZw6K1QQ)
-The materials below were generated based on the "StatQuest with Josh Starmer" tutorials, with some modifications by me.
+1. Get and set working directory
+--------------------------------
 
-##1. Get and set working directory
-
-
-```r
+``` r
 ### See the current directory
 getwd() # =>[1] "/Users/trannguyen"
 setwd("/Users/trannguyen/R_tutorials/PCA_RNASeq/") 
@@ -27,12 +26,12 @@ rm(list=ls()) #Clear the workspace before working to keep things running smoothl
 library(ggplot2) 
 ```
 
-##2. Generate the example data
+2. Generate the example data
+----------------------------
 
-- Reference: StatQuest with Josh Starmer - Youtube
+-   Reference: StatQuest with Josh Starmer - Youtube
 
-
-```r
+``` r
 #The material is from StatQuest: PCA in R - Joh Starmer
 #https://www.youtube.com/watch?v=0Jp4gsfOLMs&t=190s
 
@@ -48,17 +47,20 @@ for (i in 1:100){
 }
 ```
 
-##3. Important tips on PCA
-1. Scale all the variables so that all the variables are roughly equivalent to avoid bias towards one of them. Standard practice for scaling: dividing each variable by its standard deviation.
-2. Centering the data. 
-3. In theory, there is 1 PC for each variable. But if the number of samples < number of variables,the number of samples puts an upper bound on the number of PCs that have eigenvalue>0. 
-- The 1st PC: accounts for the most variation in the data
-- The 2nd PC: accounts for the second most variation, and so on...
+3. Important tips on PCA
+------------------------
 
-##4. Perform PCA with prcomp()
+1.  Scale all the variables so that all the variables are roughly equivalent to avoid bias towards one of them. Standard practice for scaling: dividing each variable by its standard deviation.
+2.  Centering the data.
+3.  In theory, there is 1 PC for each variable. But if the number of samples &lt; number of variables,the number of samples puts an upper bound on the number of PCs that have eigenvalue&gt;0.
 
+-   The 1st PC: accounts for the most variation in the data
+-   The 2nd PC: accounts for the second most variation, and so on...
 
-```r
+4. Perform PCA with prcomp()
+----------------------------
+
+``` r
 pca <-prcomp(t(edata), scale=TRUE)
 #prcomp() expects the samples (variables) to be rows, genes to be columns
 #=> need to transpose the matrix using t()
@@ -72,10 +74,10 @@ summary(pca)
 # big absolute loading scores: mainly responsible for pushing samples to either direction
 ```
 
-##5. Plot the PCA
+5. Plot the PCA
+---------------
 
-
-```r
+``` r
 #Setting up the color for the plot
 mycolorcollection=  c('dodgerblue3', 'cornflowerblue', 'aquamarine2','limegreen', 'yellow', 'hotpink','darkorange','salmon','chocolate4','darkorchid4','gray32')
 palette(mycolorcollection)
@@ -104,58 +106,56 @@ ggplot(data=pca.data, aes(x=X, y=Y, label=Sample)) + geom_text() +
   theme_bw() + ggtitle("The PCA Graph")
 ```
 
-##5. Plot results:
+5. Plot results:
+----------------
 
-####Plot 1:
+#### Plot 1:
 
 By plotting the first 2 PCs, the data is shown to be clustered into 2 separate groups.
 
-<img src="/Users/trannguyen/TranData/WORK/github_repos/R_tutorials/PCA_RNASeq/PCA_RNAseq_plot1.png" width="50%" height="50%" style="display: block; margin: auto;" />
+<p align="center">
+  <img src="./PCA_RNAseq_plot1.png" alt="Size Limit CLI" width="738">
+</p>
 
-####Plot 2:
+
+#### Plot 2:
 
 According to the plot, the PC1 accounts for the most variation in the data (90.4%)
 
 <img src="/Users/trannguyen/TranData/WORK/github_repos/R_tutorials/PCA_RNASeq/PCA_RNAseq_plot2.png" width="50%" height="50%" style="display: block; margin: auto;" />
 
-####Plot 3:
+#### Plot 3:
 
 By using ggplot2, we can clearly demonstrate which sample belong to each cluster/group.
 
 <img src="/Users/trannguyen/TranData/WORK/github_repos/R_tutorials/PCA_RNASeq/PCA_RNAseq_plot3.png" width="50%" height="50%" style="display: block; margin: auto;" />
 
-
 This document was processed on: 2019-06-30.
 
-
-
-```r
+``` r
 sessionInfo() 
 ```
 
-```
-## R version 3.5.1 (2018-07-02)
-## Platform: x86_64-apple-darwin15.6.0 (64-bit)
-## Running under: macOS High Sierra 10.13.6
-## 
-## Matrix products: default
-## BLAS: /Library/Frameworks/R.framework/Versions/3.5/Resources/lib/libRblas.0.dylib
-## LAPACK: /Library/Frameworks/R.framework/Versions/3.5/Resources/lib/libRlapack.dylib
-## 
-## locale:
-## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
-## 
-## attached base packages:
-## [1] stats     graphics  grDevices utils     datasets  methods   base     
-## 
-## loaded via a namespace (and not attached):
-##  [1] compiler_3.5.1  magrittr_1.5    tools_3.5.1     htmltools_0.3.6
-##  [5] yaml_2.2.0      Rcpp_1.0.1      stringi_1.4.3   rmarkdown_1.12 
-##  [9] knitr_1.22      stringr_1.4.0   xfun_0.6        digest_0.6.18  
-## [13] evaluate_0.13
-```
+    ## R version 3.5.1 (2018-07-02)
+    ## Platform: x86_64-apple-darwin15.6.0 (64-bit)
+    ## Running under: macOS High Sierra 10.13.6
+    ## 
+    ## Matrix products: default
+    ## BLAS: /Library/Frameworks/R.framework/Versions/3.5/Resources/lib/libRblas.0.dylib
+    ## LAPACK: /Library/Frameworks/R.framework/Versions/3.5/Resources/lib/libRlapack.dylib
+    ## 
+    ## locale:
+    ## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+    ## 
+    ## attached base packages:
+    ## [1] stats     graphics  grDevices utils     datasets  methods   base     
+    ## 
+    ## loaded via a namespace (and not attached):
+    ##  [1] compiler_3.5.1  magrittr_1.5    tools_3.5.1     htmltools_0.3.6
+    ##  [5] yaml_2.2.0      Rcpp_1.0.1      stringi_1.4.3   rmarkdown_1.12 
+    ##  [9] knitr_1.22      stringr_1.4.0   xfun_0.6        digest_0.6.18  
+    ## [13] evaluate_0.13
 
-```r
+``` r
 #devtools::session_info()
 ```
-

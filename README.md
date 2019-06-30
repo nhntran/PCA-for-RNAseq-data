@@ -1,4 +1,4 @@
-Quick - Easy Pipeline for Principal Component Analysis on RNASeq Data using R
+Quick And Easy Pipeline for Principal Component Analysis on RNASeq Data using R
 ================
 Tran Nguyen
 06/25/2019
@@ -14,7 +14,6 @@ Tran Nguyen
 This is the quick and simple pipeline for PCA on RNAseq data using R. Feel free to use the codes for your analysis. If you want to learn more about PCA, check out the excellent "StatQuest with Josh Starmer" video series on Youtube. (<https://www.youtube.com/watch?v=FgakZw6K1QQ>) The materials below were generated based on the "StatQuest with Josh Starmer" tutorials, with some modifications by me.
 
 ##1. Get and set working directory
---------------------------------
 
 ``` r
 ### See the current directory
@@ -28,7 +27,7 @@ library(ggplot2)
 ```
 
 ##2. Generate the example data
-----------------------------
+
 
 -   Reference: StatQuest with Josh Starmer - Youtube
 
@@ -49,7 +48,6 @@ for (i in 1:100){
 ```
 
 ##3. Important tips on PCA
-------------------------
 
 1.  Scale all the variables so that all the variables are roughly equivalent to avoid bias towards one of them. Standard practice for scaling: dividing each variable by its standard deviation.
 2.  Centering the data.
@@ -59,7 +57,6 @@ for (i in 1:100){
 -   The 2nd PC: accounts for the second most variation, and so on...
 
 ##4. Perform PCA with prcomp()
-----------------------------
 
 ``` r
 pca <-prcomp(t(edata), scale=TRUE)
@@ -76,7 +73,7 @@ summary(pca)
 ```
 
 ##5. Plot the PCA
----------------
+
 
 ``` r
 #Setting up the color for the plot
@@ -108,7 +105,7 @@ ggplot(data=pca.data, aes(x=X, y=Y, label=Sample)) + geom_text() +
 ```
 
 ##6. Plot results:
-----------------
+
 
 #### Plot 1:
 

@@ -13,7 +13,7 @@ Tran Nguyen
 
 This is the quick and simple pipeline for PCA on RNAseq data using R. Feel free to use the codes for your analysis. If you want to learn more about PCA, check out the excellent "StatQuest with Josh Starmer" video series on Youtube. (<https://www.youtube.com/watch?v=FgakZw6K1QQ>) The materials below were generated based on the "StatQuest with Josh Starmer" tutorials, with some modifications by me.
 
-##1. Get and set working directory
+## 1. Get and set working directory
 
 ``` r
 ### See the current directory
@@ -26,7 +26,7 @@ rm(list=ls()) #Clear the workspace before working to keep things running smoothl
 library(ggplot2) 
 ```
 
-##2. Generate the example data
+## 2. Generate the example data
 
 
 -   Reference: StatQuest with Josh Starmer - Youtube
@@ -47,7 +47,7 @@ for (i in 1:100){
 }
 ```
 
-##3. Important tips on PCA
+## 3. Important tips on PCA
 
 1.  Scale all the variables so that all the variables are roughly equivalent to avoid bias towards one of them. Standard practice for scaling: dividing each variable by its standard deviation.
 2.  Centering the data.
@@ -56,7 +56,7 @@ for (i in 1:100){
 -   The 1st PC: accounts for the most variation in the data
 -   The 2nd PC: accounts for the second most variation, and so on...
 
-##4. Perform PCA with prcomp()
+## 4. Perform PCA with prcomp()
 
 ``` r
 pca <-prcomp(t(edata), scale=TRUE)
@@ -72,7 +72,7 @@ summary(pca)
 # big absolute loading scores: mainly responsible for pushing samples to either direction
 ```
 
-##5. Plot the PCA
+## 5. Plot the PCA
 
 
 ``` r
@@ -104,7 +104,7 @@ ggplot(data=pca.data, aes(x=X, y=Y, label=Sample)) + geom_text() +
   theme_bw() + ggtitle("The PCA Graph")
 ```
 
-##6. Plot results:
+## 6. Plot results:
 
 
 #### Plot 1:

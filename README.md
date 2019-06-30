@@ -107,7 +107,7 @@ ggplot(data=pca.data, aes(x=X, y=Y, label=Sample)) + geom_text() +
   theme_bw() + ggtitle("The PCA Graph")
 ```
 
-##5. Plot results:
+##6. Plot results:
 ----------------
 
 #### Plot 1:
@@ -115,7 +115,7 @@ ggplot(data=pca.data, aes(x=X, y=Y, label=Sample)) + geom_text() +
 By plotting the first 2 PCs, the data is shown to be clustered into 2 separate groups.
 
 <p align="center">
-  <img src="./PCA_RNAseq_plot1.png" alt="Size Limit CLI">
+  <img src="./img/PCA_RNAseq_plot1.png" alt="Size Limit CLI">
 </p>
 
 
@@ -123,13 +123,17 @@ By plotting the first 2 PCs, the data is shown to be clustered into 2 separate g
 
 According to the plot, the PC1 accounts for the most variation in the data (90.4%)
 
-<img src="/Users/trannguyen/TranData/WORK/github_repos/R_tutorials/PCA_RNASeq/PCA_RNAseq_plot2.png" width="50%" height="50%" style="display: block; margin: auto;" />
+<p align="center">
+  <img src="./img/PCA_RNAseq_plot2.png" alt="Size Limit CLI">
+</p>
 
 #### Plot 3:
 
 By using ggplot2, we can clearly demonstrate which sample belong to each cluster/group.
 
-<img src="/Users/trannguyen/TranData/WORK/github_repos/R_tutorials/PCA_RNASeq/PCA_RNAseq_plot3.png" width="50%" height="50%" style="display: block; margin: auto;" />
+<p align="center">
+  <img src="./img/PCA_RNAseq_plot3.png" alt="Size Limit CLI">
+</p>
 
 This document was processed on: 2019-06-30.
 

@@ -3,8 +3,9 @@ title: "Quick - Easy Pipeline for Principal Component Analysis on RNASeq Data us
 author: "Tran Nguyen"
 date: "06/25/2019"
 output:
-  html_document:
-    keep_md: TRUE
+  github_document:
+    toc: true
+    toc_depth: 2
 ---
 
 ```{r chunk1 setup, include=FALSE}

@@ -1,7 +1,6 @@
 ---
 title: "Quick - Easy Pipeline for Principal Component Analysis on RNASeq Data using R"
 author: "Tran Nguyen"
-date: "06/25/2019"
 output:
   github_document:
     toc: true

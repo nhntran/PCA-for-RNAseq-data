@@ -1,17 +1,19 @@
 Quick And Easy Pipeline for Principal Component Analysis on RNASeq Data using R
 ================
 Tran Nguyen
-06/25/2019
+================
 
+This is the quick and simple pipeline for PCA on RNAseq data using R. Feel free to use the codes for your analysis. If you want to learn more about PCA, check out the excellent "StatQuest with Josh Starmer" video series on Youtube. (<https://www.youtube.com/watch?v=FgakZw6K1QQ>) The materials below were generated based on the "StatQuest with Josh Starmer" tutorials, with some modifications by me.
+
+### Contents:
 -   [1. Get and set working directory](#get-and-set-working-directory)
 -   [2. Generate the example data](#generate-the-example-data)
 -   [3. Important tips on PCA](#important-tips-on-pca)
 -   [4. Perform PCA with prcomp()](#perform-pca-with-prcomp)
 -   [5. Plot the PCA](#plot-the-pca)
--   [5. Plot results:](#plot-results)
+-   [6. Plot results](#plot-results)
 
 
-This is the quick and simple pipeline for PCA on RNAseq data using R. Feel free to use the codes for your analysis. If you want to learn more about PCA, check out the excellent "StatQuest with Josh Starmer" video series on Youtube. (<https://www.youtube.com/watch?v=FgakZw6K1QQ>) The materials below were generated based on the "StatQuest with Josh Starmer" tutorials, with some modifications by me.
 
 ## 1. Get and set working directory
 
@@ -104,7 +106,7 @@ ggplot(data=pca.data, aes(x=X, y=Y, label=Sample)) + geom_text() +
   theme_bw() + ggtitle("The PCA Graph")
 ```
 
-## 6. Plot results:
+## 6. Plot results
 
 
 #### Plot 1:
@@ -132,7 +134,7 @@ By using ggplot2, we can clearly demonstrate which sample belong to each cluster
   <img src="./img/PCA_RNAseq_plot3.png" alt="Size Limit CLI">
 </p>
 
-This document was processed on: 2019-06-30.
+This document was processed on: 2019-01-15.
 
 ``` r
 sessionInfo() 

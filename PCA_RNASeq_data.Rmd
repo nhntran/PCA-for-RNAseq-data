@@ -1,11 +1,10 @@
 ---
-title: "PCA for RNASeq data"
+title: "Quick - Easy Pipeline for Principal Component Analysis on RNASeq Data using R"
 author: "Tran Nguyen"
 date: "06/25/2019"
 output:
-  md_document:
-    variant: markdown_github
-
+  html_document:
+    keep_md: TRUE
 ---
 
 ```{r chunk1 setup, include=FALSE}
@@ -13,7 +12,9 @@ knitr::opts_chunk$set(echo = TRUE)
 #knitr::opts_chunk$set(eval = FALSE) #not running all the codes
 ```
 
-Reference about PCA: StatQuest with Josh Starmer on Youtube
+This is the quick and simple pipeline for PCA on RNAseq data using R. Feel free to use the codes for your analysis. If you want to learn more about PCA, check out the excellent "StatQuest with Josh Starmer" video series on Youtube. 
+(https://www.youtube.com/watch?v=FgakZw6K1QQ)
+The materials below were generated based on the "StatQuest with Josh Starmer" tutorials, with some modifications by me.
 
 ##1. Get and set working directory
 
@@ -37,7 +38,7 @@ library(ggplot2)
 #https://www.youtube.com/watch?v=0Jp4gsfOLMs&t=190s
 
 #example of expression data containing 6 samples and 100 genes
-# 3 wildtype wt and 3 knock-out ko samples
+# 3 wildtype (wt) and 3 knock-out (ko) samples
 edata<-matrix(nrow=100, ncol=6)
 colnames(edata)<-c(paste("wt",1:3,sep=""), paste("ko",1:3,sep="")) 
 rownames(edata)<-paste("gene",1:100,sep="")
@@ -105,21 +106,27 @@ ggplot(data=pca.data, aes(x=X, y=Y, label=Sample)) + geom_text() +
 
 ##5. Plot results:
 
-Plot 1:
+####Plot 1:
+
+By plotting the first 2 PCs, the data is shown to be clustered into 2 separate groups.
 
 ```{r out.width = '50%',out.height= '50%', fig.align = "center", echo=FALSE}
 knitr::opts_chunk$set(eval = TRUE)
 knitr::include_graphics(rep("/Users/trannguyen/TranData/WORK/github_repos/R_tutorials/PCA_RNASeq/PCA_RNAseq_plot1.png"))
 ```
 
-Plot 2:
+####Plot 2:
+
+According to the plot, the PC1 accounts for the most variation in the data (90.4%)
 
 ```{r out.width = '50%',out.height= '50%', fig.align = "center", echo=FALSE}
 knitr::opts_chunk$set(eval = TRUE)
 knitr::include_graphics(rep("/Users/trannguyen/TranData/WORK/github_repos/R_tutorials/PCA_RNASeq/PCA_RNAseq_plot2.png"))
 ```
 
-Plot 3:
+####Plot 3:
+
+By using ggplot2, we can clearly demonstrate which sample belong to each cluster/group.
 
 ```{r out.width = '50%',out.height= '50%', fig.align = "center", echo=FALSE}
 knitr::opts_chunk$set(eval = TRUE)
